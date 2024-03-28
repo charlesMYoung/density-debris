@@ -1,22 +1,30 @@
 [
-    {
-        "name": "git lab",
-        "url": "http://10.20.40.88:30080/"
-    },
-    {
-        "name": "jenkins",
-        "url": "http://10.20.40.88:8080/"
-    },
-    {
-        "name": "YAPI",
-        "url": "http://home.matrixpunk.com:33228/login"
-    },
-    {
-        "name": "国信商城客户端",
-        "url": "http://10.20.40.88:3000/login"
-    },
-    {
-        "name": "国信管理端",
-        "url": "http://10.20.40.88:3001/login?redirect=%2Findex"
-    }
+  {
+    "name": "GIT lab",
+    "url": "http://10.20.40.88:30080/"
+  },
+  {
+    "name": "Jenkins",
+    "url": "http://10.20.40.88:8080/"
+  },
+  {
+    "name": "YAPI",
+    "url": "http://home.matrixpunk.com:33228/login"
+  },
+  {
+    "name": "国信商城客户端",
+    "url": "http://10.20.40.88:3000/login"
+  },
+  {
+    "name": "国信管理端",
+    "url": "http://10.20.40.88:3001/login?redirect=%2Findex"
+  },
+  {
+    "name": "MDS",
+    "url": "http://10.20.40.88:3002"
+  },
+  {
+    "name": "禅道",
+    "url": "http://10.20.40.88:4000"
+  }
 ]
