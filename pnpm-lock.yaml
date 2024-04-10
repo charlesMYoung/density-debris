@@ -14,6 +14,9 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.1.0
     version: 5.1.0(astro@4.4.11)(tailwindcss@3.4.1)
+  '@material/material-color-utilities':
+    specifier: ^0.2.7
+    version: 0.2.7
   '@types/react':
     specifier: ^18.2.64
     version: 18.2.64
@@ -699,6 +702,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: false
+
+  /@material/material-color-utilities@0.2.7:
+    resolution: {integrity: sha512-0FCeqG6WvK4/Cc06F/xXMd/pv4FeisI0c1tUpBbfhA2n9Y8eZEv4Karjbmf2ZqQCPUWMrGp8A571tCjizxoTiQ==}
     dev: false
 
   /@medv/finder@3.2.0:
