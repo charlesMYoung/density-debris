@@ -15,10 +15,10 @@ import Navigation from "../components/Navigation.astro";
     applyTheme,
   } from "@material/material-color-utilities";
   // Get the theme from a hex color
-  const theme = themeFromSourceColor(argbFromHex("#ffddcc"), [
+  const theme = themeFromSourceColor(argbFromHex("#ffdd77"), [
     {
       name: "custom-1",
-      value: argbFromHex("#ff0000"),
+      value: argbFromHex("#ffdd77"),
       blend: true,
     },
   ]);
@@ -38,6 +38,15 @@ import Navigation from "../components/Navigation.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style>
+      @font-face {
+        font-family: "smiley-sans";
+        src: url("/fonts/SmileySans-Oblique.otf.woff2") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
   </head>
   <body>
     <section class="flex h-screen flex-col bg-background">

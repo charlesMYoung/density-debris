@@ -1,9 +1,23 @@
 ---
-
+import { Icon } from "astro-icon/components";
+import { cn } from "~/utils/cn";
 ---
 
-<div class="flex space-x-3 w-full justify-end fixed px-4 top-0 py-4 z-10">
-  <a href="/">首页</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
+<div
+  class={cn(
+    "max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto",
+    "text-on-background flex space-x-4 items-center w-full py-2"
+  )}
+>
+  <div class="fixed">LOGO</div>
+  <div class="flex w-full justify-end top-0 py-4 z-10 title-lg space-x-6">
+    <a href="/blog/" class="hover:text-primary">Blog</a>
+    <a href="/photo/" class="hover:text-primary">Photo</a>
+  </div>
+  <div class="flex title-lg space-x-2">
+    <Icon name="ri:github-line" class="hover:text-primary cursor-pointer" />
+    <Icon name="ri:rss-line" class="hover:text-primary cursor-pointer" />
+    <Icon name="ri:sun-fill" class="hover:text-primary cursor-pointer" />
+    <Icon name="ri:moon-fill" class="hover:text-primary cursor-pointer" />
+  </div>
 </div>

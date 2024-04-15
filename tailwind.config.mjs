@@ -42,102 +42,87 @@ const fontUnit = (/** @type {number} */ size) => {
 
 const typography = plugin(({ addComponents, theme }) => {
 	addComponents({
-		".display-large": {
+		".dp-lg": {
 			lineHeight: fontUnit(64),
 			fontSize: fontUnit(57),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".display-medium": {
+		".dp-md": {
 			lineHeight: fontUnit(52),
 			fontSize: fontUnit(45),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".display-small": {
+		".dp-sm": {
 			lineHeight: fontUnit(44),
 			fontSize: fontUnit(36),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".headline-large": {
+		".hl-lg": {
 			lineHeight: fontUnit(40),
 			fontSize: fontUnit(32),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".headline-medium": {
+		".hl-md": {
 			lineHeight: fontUnit(36),
 			fontSize: fontUnit(28),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".headline-small": {
+		".hl-sm": {
 			lineHeight: fontUnit(32),
 			fontSize: fontUnit(24),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".title-large": {
+		".title-lg": {
 			lineHeight: fontUnit(28),
 			fontSize: fontUnit(22),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 		},
-		".title-medium": {
+		".title-md": {
 			lineHeight: fontUnit(24),
 			fontSize: fontUnit(16),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.15),
 		},
-		".title-small": {
+		".title-sm": {
 			lineHeight: fontUnit(20),
 			fontSize: fontUnit(14),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.1),
 		},
-		".label-large": {
+		".label-lg": {
 			lineHeight: fontUnit(20),
 			fontSize: fontUnit(14),
 			fontWeight: 400,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.1),
 		},
-		".label-medium": {
+		".label-md": {
 			lineHeight: fontUnit(16),
 			fontSize: fontUnit(12),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.5),
 		},
-		".label-small": {
+		".label-sm": {
 			lineHeight: fontUnit(6),
 			fontSize: fontUnit(11),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.5),
 		},
-		".body-large": {
+		".body-lg": {
 			lineHeight: fontUnit(24),
 			fontSize: fontUnit(16),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.15),
 		},
-		".body-medium": {
+		".body-md": {
 			lineHeight: fontUnit(20),
 			fontSize: fontUnit(14),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.25),
 		},
-		".body-small": {
+		".body-sm": {
 			lineHeight: fontUnit(16),
 			fontSize: fontUnit(12),
 			fontWeight: 500,
-			fontFamily: "Roboto ,sans-serif",
 			letterSpacing: fontUnit(0.4),
 		},
 	});
@@ -151,7 +136,10 @@ export default {
 		extend: {
 			colors: {
 				...themeColors(),
-			}
+			},
+			fontFamily: {
+				sans: ['smiley-sans'],
+			},
 		},
 	},
 	plugins: [typography],
