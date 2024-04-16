@@ -6,6 +6,7 @@ interface Props {
 const { title } = Astro.props;
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
+import { cn } from "~/utils";
 ---
 
 <script>
@@ -15,7 +16,7 @@ import Navigation from "../components/Navigation.astro";
     applyTheme,
   } from "@material/material-color-utilities";
   // Get the theme from a hex color
-  const theme = themeFromSourceColor(argbFromHex("#ffdd77"), [
+  const theme = themeFromSourceColor(argbFromHex("#002FA7"), [
     {
       name: "custom-1",
       value: argbFromHex("#ffdd77"),
@@ -48,11 +49,15 @@ import Navigation from "../components/Navigation.astro";
       }
     </style>
   </head>
-  <body>
-    <section class="flex h-screen flex-col bg-background">
+  <body class="relative">
+    <section class="flex flex-col bg-background">
       <Navigation />
       <main
-        class="flex-1 w-full max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto"
+        class={cn(
+          "flex-1 w-full px-4 sm:px-0 min-h-screen",
+          "max-w-screen-sm md:max-w-screen-md mx-auto",
+          "prose md:prose-lg text-on-background dark:prose-invert"
+        )}
       >
         <slot />
       </main>

@@ -1,5 +1,6 @@
 
 import plugin from "tailwindcss/plugin";
+import twTypography from '@tailwindcss/typography'
 
 const themeColors = () => {
 	return [
@@ -142,5 +143,5 @@ export default {
 			},
 		},
 	},
-	plugins: [typography],
+	plugins: [typography,twTypography()],
 }

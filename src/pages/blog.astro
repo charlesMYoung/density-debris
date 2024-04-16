@@ -1,19 +1,48 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import { groupByArray } from "~/utils";
+import dayjs from "dayjs";
 
-const pageTitle = "My Astro Learning Blog";
+const pageTitle = "Blog";
 const allPosts = await getCollection("posts");
+const mapData = allPosts.map((item) => {
+  return {
+    ...item,
+    ...item.data,
+    pubDate: dayjs(item.data.pubDate).year(),
+  };
+});
+const groupedData = groupByArray(mapData, "pubDate");
+console.log(groupedData);
 ---
 
 <Layout title={pageTitle}>
-  <ul>
+  <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
     {
-      allPosts.map((post) => (
-        <a href={`/posts/${post.slug}/`} title={post.data.title}>
-          {post.data.title}
-        </a>
+      groupedData.map(({ key, value }) => (
+        <div key={key} class="relative flex">
+          <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
+            {dayjs(key).format("YYYY")}
+          </div>
+          <div class="flex w-full flex-col space-y-8  z-10">
+            {value.map((post) => {
+              return (
+                <a
+                  class="text-2xl text-default-500 cursor-pointer hover:text-primary no-underline"
+                  href={`/${post.slug}/`}
+                  title={post.data.title}
+                >
+                  {post.data.title}
+                  <span class="ml-2 text-xl text-default-200">
+                    {dayjs(post.data.pubDate).format("MM-DD")}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </Layout>
