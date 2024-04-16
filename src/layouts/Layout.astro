@@ -28,7 +28,7 @@ import { cn } from "~/utils";
   const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   // Apply the theme to the body by updating custom properties for material tokens
-  applyTheme(theme, { target: document.body, dark: systemDark });
+  applyTheme(theme, { target: document.body, dark: true });
 </script>
 
 <html lang="en">
@@ -54,7 +54,7 @@ import { cn } from "~/utils";
       <Navigation />
       <main
         class={cn(
-          "flex-1 w-full px-4 sm:px-0 min-h-screen",
+          "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen",
           "max-w-screen-sm md:max-w-screen-md mx-auto",
           "prose md:prose-lg text-on-background dark:prose-invert"
         )}

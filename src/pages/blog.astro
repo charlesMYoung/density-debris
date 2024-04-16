@@ -15,9 +15,28 @@ const mapData = allPosts.map((item) => {
 });
 const groupedData = groupByArray(mapData, "pubDate");
 console.log(groupedData);
+
+const categoriesFromServer = [{ name: "All", id: "all" }];
 ---
 
 <Layout title={pageTitle}>
+  <div
+    class="flex w-full flex-col space-y-4 py-10 md:flex-row md:space-x-6 md:space-y-0"
+  >
+    {
+      categoriesFromServer?.map((cate, index) => {
+        return (
+          <a
+            class="text-2xl"
+            href={`/blog/category/${cate.id}`}
+            color={index ? "foreground" : undefined}
+          >
+            {cate.name}
+          </a>
+        );
+      })
+    }
+  </div>
   <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
     {
       groupedData.map(({ key, value }) => (
@@ -29,12 +48,12 @@ console.log(groupedData);
             {value.map((post) => {
               return (
                 <a
-                  class="text-2xl text-default-500 cursor-pointer hover:text-primary no-underline"
+                  class="text-2xl text-on-background cursor-pointer hover:text-primary no-underline"
                   href={`/${post.slug}/`}
                   title={post.data.title}
                 >
                   {post.data.title}
-                  <span class="ml-2 text-xl text-default-200">
+                  <span class="ml-2 text-xl text-on-background">
                     {dayjs(post.data.pubDate).format("MM-DD")}
                   </span>
                 </a>
