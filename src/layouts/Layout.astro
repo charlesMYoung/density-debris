@@ -7,7 +7,13 @@ const { title } = Astro.props;
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import { cn } from "~/utils";
-import svgReference from "~/SVG/Astro.svg";
+const svgs = await Astro.glob("~/SVG/*.svg");
+
+const assetsSize = svgs.length;
+
+//随机获取一个svg
+const randomIndex = Math.floor(Math.random() * assetsSize);
+const randomSvg = svgs[randomIndex];
 ---
 
 <script>
@@ -63,9 +69,9 @@ import svgReference from "~/SVG/Astro.svg";
         <slot />
       </main>
       <img
-        src={svgReference.src}
+        src={randomSvg.default.src}
         alt="image description"
-        class="fixed top-0 right-0 bottom-0 opacity-[0.05] pointer-events-none"
+        class="fixed top-0 right-0 bottom-0 opacity-[0.05] pointer-events-none w-6/12"
       />
       <Footer />
     </section>
