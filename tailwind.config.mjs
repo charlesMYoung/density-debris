@@ -145,9 +145,9 @@ export default {
 				return {
 					pink: {
 						css: {
-							'--tw-prose-body': theme('colors.pink[800]'),
-							'--tw-prose-headings': theme('colors.pink[900]'),
-							'--tw-prose-lead': theme('colors.pink[700]'),
+							'--tw-prose-body': 'var(--md-sys-color-background)',
+							'--tw-prose-headings': 'var(--md-sys-color-primary)',
+							'--tw-prose-lead': 'var(--md-sys-color-secondary)',
 							'--tw-prose-links': theme('colors.pink[900]'),
 							'--tw-prose-bold': theme('colors.pink[900]'),
 							'--tw-prose-counters': theme('colors.pink[600]'),
