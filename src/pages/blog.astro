@@ -24,12 +24,11 @@ const categoriesFromServer = [{ name: "All", id: "all" }];
     class="flex w-full flex-col space-y-4 py-10 md:flex-row md:space-x-6 md:space-y-0"
   >
     {
-      categoriesFromServer?.map((cate, index) => {
+      categoriesFromServer?.map((cate) => {
         return (
           <a
-            class="text-2xl"
+            class="text-2xl no-underline text-on-background"
             href={`/blog/category/${cate.id}`}
-            color={index ? "foreground" : undefined}
           >
             {cate.name}
           </a>
@@ -40,7 +39,7 @@ const categoriesFromServer = [{ name: "All", id: "all" }];
   <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
     {
       groupedData.map(({ key, value }) => (
-        <div key={key} class="relative flex">
+        <div class="relative flex">
           <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
             {dayjs(key).format("YYYY")}
           </div>
@@ -48,7 +47,7 @@ const categoriesFromServer = [{ name: "All", id: "all" }];
             {value.map((post) => {
               return (
                 <a
-                  class="text-2xl text-on-background cursor-pointer hover:text-primary no-underline"
+                  class="text-2xl text-on-background cursor-pointer hover:text-secondary no-underline"
                   href={`/${post.slug}/`}
                   title={post.data.title}
                 >
