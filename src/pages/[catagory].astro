@@ -14,14 +14,31 @@ const mapData = allPosts.map((item) => {
   };
 });
 const groupedData = groupByArray(mapData, "pubDate");
-console.log(groupedData);
 
-const categoriesFromServer = [{ name: "All", id: "all" }];
+const categoriesFromServer = [
+  { name: "随笔", id: "all" },
+  {
+    name: "技术",
+    id: "tech",
+  },
+  { name: "笔记", id: "life" },
+];
+
+export async function getStaticPaths() {
+  return [
+    { params: { catagory: "blog" } },
+    { params: { catagory: "note" } },
+    { params: { catagory: "3" } },
+  ];
+}
+const { catagory } = Astro.params;
+
+console.log(catagory);
 ---
 
 <Layout title={pageTitle}>
   <div
-    class="flex w-full flex-col space-y-4 py-10 md:flex-row md:space-x-6 md:space-y-0"
+    class="flex w-full flex-col space-y-4 pb-10 md:flex-row md:space-x-6 md:space-y-0"
   >
     {
       categoriesFromServer?.map((cate) => {
@@ -52,7 +69,7 @@ const categoriesFromServer = [{ name: "All", id: "all" }];
                   title={post.data.title}
                 >
                   {post.data.title}
-                  <span class="ml-2 text-xl text-on-background">
+                  <span class="ml-2 text-xl text-secondary">
                     {dayjs(post.data.pubDate).format("MM-DD")}
                   </span>
                 </a>
