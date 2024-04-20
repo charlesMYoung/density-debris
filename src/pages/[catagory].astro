@@ -15,22 +15,25 @@ const mapData = allPosts.map((item) => {
 });
 const groupedData = groupByArray(mapData, "pubDate");
 
-const categoriesFromServer = [
-  { name: "随笔", id: "all" },
-  {
-    name: "技术",
-    id: "tech",
-  },
-  { name: "笔记", id: "life" },
-];
+const subMenu: Record<string, string> = {
+  tech: "技术",
+  note: "笔记",
+  reflection: "随笔",
+};
 
 export async function getStaticPaths() {
-  return [
-    { params: { catagory: "blog" } },
-    { params: { catagory: "note" } },
-    { params: { catagory: "3" } },
-  ];
+  const subMenuMap = {
+    tech: "技术",
+    note: "笔记",
+    reflection: "随笔",
+  };
+  return Object.keys(subMenuMap).map((key) => {
+    return {
+      params: { catagory: key },
+    };
+  });
 }
+
 const { catagory } = Astro.params;
 
 console.log(catagory);
@@ -41,13 +44,10 @@ console.log(catagory);
     class="flex w-full flex-col space-y-4 pb-10 md:flex-row md:space-x-6 md:space-y-0"
   >
     {
-      categoriesFromServer?.map((cate) => {
+      Object.keys(subMenu)?.map((key: string) => {
         return (
-          <a
-            class="text-2xl no-underline text-on-background"
-            href={`/blog/category/${cate.id}`}
-          >
-            {cate.name}
+          <a class="text-2xl no-underline text-on-background" href={`/${key}`}>
+            {subMenu[key] as unknown as string}
           </a>
         );
       })
