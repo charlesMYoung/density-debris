@@ -1,0 +1,15 @@
+---
+const svgs = await Astro.glob("~/SVG/*.svg");
+
+const assetsSize = svgs.length;
+
+//随机获取一个svg
+const randomIndex = Math.floor(Math.random() * assetsSize);
+const randomSvg = svgs[randomIndex];
+---
+
+<img
+  src={randomSvg.default.src}
+  alt="image description"
+  class="fixed top-20 right-0 bottom-0 opacity-[0.05] pointer-events-none w-6/12"
+/>

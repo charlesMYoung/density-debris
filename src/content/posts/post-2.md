@@ -2,9 +2,6 @@
 title: 我的第二篇博客文章
 author: Astro 学习者
 description: "学习了一些 Astro 后，我根本停不下来！"
-image:
-  url: "https://docs.astro.build/assets/arc.webp"
-  alt: "Thumbnail of Astro arcs."
 pubDate: 2024-07-08
 tags: ["astro", "blogging", "learning in public", "successes"]
 category: "reflection"

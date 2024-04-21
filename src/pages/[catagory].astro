@@ -3,9 +3,11 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import { groupByArray } from "~/utils";
 import dayjs from "dayjs";
+import { cn } from "~/utils";
 
 const pageTitle = "Blog";
 const allPosts = await getCollection("posts");
+
 const mapData = allPosts.map((item) => {
   return {
     ...item,
@@ -13,19 +15,27 @@ const mapData = allPosts.map((item) => {
     pubDate: dayjs(item.data.pubDate).year(),
   };
 });
-const groupedData = groupByArray(mapData, "pubDate");
+
+const groupedData = groupByArray(mapData, "category");
+
+const groupCategoryPosts = groupedData.map((item) => {
+  return {
+    ...item,
+    value: groupByArray(item.value, "pubDate"),
+  };
+});
 
 const subMenu: Record<string, string> = {
+  reflection: "随笔",
   tech: "技术",
   note: "笔记",
-  reflection: "随笔",
 };
 
 export async function getStaticPaths() {
   const subMenuMap = {
+    reflection: "随笔",
     tech: "技术",
     note: "笔记",
-    reflection: "随笔",
   };
   return Object.keys(subMenuMap).map((key) => {
     return {
@@ -36,17 +46,24 @@ export async function getStaticPaths() {
 
 const { catagory } = Astro.params;
 
-console.log(catagory);
+const currentPostList = groupCategoryPosts.find(
+  (item) => item.key === catagory
+);
 ---
 
-<Layout title={pageTitle}>
+<Layout title={subMenu[catagory]}>
   <div
     class="flex w-full flex-col space-y-4 pb-10 md:flex-row md:space-x-6 md:space-y-0"
   >
     {
       Object.keys(subMenu)?.map((key: string) => {
         return (
-          <a class="text-2xl no-underline text-on-background" href={`/${key}`}>
+          <a
+            class={cn("text-2xl no-underline text-on-background", {
+              "text-primary": catagory === key,
+            })}
+            href={`/${key}`}
+          >
             {subMenu[key] as unknown as string}
           </a>
         );
@@ -55,29 +72,34 @@ console.log(catagory);
   </div>
   <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
     {
-      groupedData.map(({ key, value }) => (
-        <div class="relative flex">
-          <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
-            {dayjs(key).format("YYYY")}
+      Array.isArray(currentPostList?.value) &&
+      currentPostList?.value.length > 0 ? (
+        currentPostList?.value.map(({ key, value }) => (
+          <div class="relative flex">
+            <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
+              {dayjs(key).format("YYYY")}
+            </div>
+            <div class="flex w-full flex-col space-y-8  z-10">
+              {value.map((post) => {
+                return (
+                  <a
+                    class="text-2xl text-on-background cursor-pointer hover:text-secondary no-underline"
+                    href={`/post/${post.slug}/`}
+                    title={post.data.title}
+                  >
+                    {post.data.title}
+                    <span class="ml-2 text-xl text-secondary">
+                      {dayjs(post.data.pubDate).format("MM-DD")}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div class="flex w-full flex-col space-y-8  z-10">
-            {value.map((post) => {
-              return (
-                <a
-                  class="text-2xl text-on-background cursor-pointer hover:text-secondary no-underline"
-                  href={`/${post.slug}/`}
-                  title={post.data.title}
-                >
-                  {post.data.title}
-                  <span class="ml-2 text-xl text-secondary">
-                    {dayjs(post.data.pubDate).format("MM-DD")}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      ))
+        ))
+      ) : (
+        <div>还没有任何文章哦</div>
+      )
     }
   </div>
 </Layout>

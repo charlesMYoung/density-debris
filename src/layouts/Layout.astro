@@ -1,19 +1,15 @@
 ---
 interface Props {
-  title: string;
+  title?: string;
+  frontmatter: {
+    title: string;
+  };
 }
-
-const { title } = Astro.props;
-import Footer from "../components/Footer.astro";
-import Navigation from "../components/Navigation.astro";
+const { title, frontmatter } = Astro.props;
+import Footer from "~/components/Footer.astro";
+import Navigation from "~/components/Navigation.astro";
+import RandomSVG from "~/components/RandomSVGBackground.astro";
 import { cn } from "~/utils";
-const svgs = await Astro.glob("~/SVG/*.svg");
-
-const assetsSize = svgs.length;
-
-//随机获取一个svg
-const randomIndex = Math.floor(Math.random() * assetsSize);
-const randomSvg = svgs[randomIndex];
 ---
 
 <script>
@@ -35,7 +31,7 @@ const randomSvg = svgs[randomIndex];
   const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   // Apply the theme to the body by updating custom properties for material tokens
-  applyTheme(theme, { target: document.body, dark: true });
+  applyTheme(theme, { target: document.body, dark: systemDark });
 </script>
 
 <html lang="en">
@@ -45,7 +41,7 @@ const randomSvg = svgs[randomIndex];
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title || frontmatter.title}</title>
     <style>
       @font-face {
         font-family: "smiley-sans";
@@ -53,6 +49,13 @@ const randomSvg = svgs[randomIndex];
         font-weight: normal;
         font-style: normal;
         font-display: swap;
+      }
+      *::selection {
+        background-color: var(--md-sys-color-primary-container);
+      }
+
+      :root {
+        scrollbar-gutter: stable;
       }
     </style>
   </head>
@@ -68,11 +71,7 @@ const randomSvg = svgs[randomIndex];
       >
         <slot />
       </main>
-      <img
-        src={randomSvg.default.src}
-        alt="image description"
-        class="fixed top-0 right-0 bottom-0 opacity-[0.05] pointer-events-none w-6/12"
-      />
+      <RandomSVG />
       <Footer />
     </section>
   </body>

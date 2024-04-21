@@ -1,12 +1,15 @@
 ---
-const platform = "github";
+import dayjs from "dayjs";
+const copyright = "CC BY-NC-SA 4.0";
 const username = "withastro";
 ---
 
-<footer>
+<footer class="title-md text-on-surface mt-10 mb-6 flex justify-center w-full">
   <p>
-    Learn more about my projects on <a
-      href={`https://www.${platform}.com/${username}`}>{platform}</a
-    >!
+    <a
+      class="text-primary hover:text-on-primary"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/">{copyright}</a
+    >
+    2021-{dayjs().year()} © {username}
   </p>
 </footer>
