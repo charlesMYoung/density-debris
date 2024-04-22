@@ -7,32 +7,10 @@ interface Props {
 }
 const { title, frontmatter } = Astro.props;
 import Footer from "~/components/Footer.astro";
-import Navigation from "~/components/Navigation.astro";
+import Header from "~/components/Header";
 import RandomSVG from "~/components/RandomSVGBackground.astro";
 import { cn } from "~/utils";
 ---
-
-<script>
-  import {
-    argbFromHex,
-    themeFromSourceColor,
-    applyTheme,
-  } from "@material/material-color-utilities";
-  // Get the theme from a hex color
-  const theme = themeFromSourceColor(argbFromHex("#002FA7"), [
-    {
-      name: "custom-1",
-      value: argbFromHex("#ffdd77"),
-      blend: true,
-    },
-  ]);
-
-  // Check if the user has dark mode turned on
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  // Apply the theme to the body by updating custom properties for material tokens
-  applyTheme(theme, { target: document.body, dark: systemDark });
-</script>
 
 <html lang="en">
   <head>
@@ -59,9 +37,9 @@ import { cn } from "~/utils";
       }
     </style>
   </head>
-  <body class="relative">
-    <section class="flex flex-col bg-background">
-      <Navigation />
+  <body class="relative dark">
+    <section class="flex flex-col bg-background text-default">
+      <Header client:only />
       <main
         class={cn(
           "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen",
