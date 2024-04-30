@@ -8,14 +8,13 @@ export async function GET(context) {
     // 输出的 xml 中的`<title>`字段
     title: AppConfig.title,
     // 输出的 xml 中的`<description>`字段
-    description: "A humble Astronaut’s guide to the stars",
+    description: AppConfig.description,
     // 从端点上下文获取项目“site”
     // https://docs.astro.build/zh-cn/reference/api-reference/#contextsite
     site: AppConfig.homeUrl,
     // 输出的 xml 中的`<item>`数组
     // 有关使用内容集合和 glob 导入的示例，请参阅“生成`items`”部分
     items: blog.map((item) => {
-      console.log("dddd", `${AppConfig.homeUrl}/posts/${item.slug}`);
       return {
         title: item.data.title,
         description: item.data.description,

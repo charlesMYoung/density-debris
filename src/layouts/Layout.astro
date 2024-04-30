@@ -1,21 +1,28 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
   frontmatter?: {
     title?: string;
+    description?: string;
   };
 }
-const { title, frontmatter } = Astro.props;
+import { ViewTransitions } from "astro:transitions";
+const { title, frontmatter, description } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta
+      name="description"
+      content={description || (frontmatter && frontmatter.description)}
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title || (frontmatter && frontmatter.title)}</title>
+    <ViewTransitions />
     <script is:inline>
       (function () {
         const storedTheme = JSON.parse(
@@ -40,7 +47,7 @@ const { title, frontmatter } = Astro.props;
       })();
     </script>
   </head>
-  <body class="relative">
+  <body>
     <slot />
   </body>
 </html>
