@@ -5,10 +5,7 @@ export type Theme = "light" | "dark" | "auto";
 
 export default function useTheme(defaultTheme: Theme = "auto") {
   const isMatchDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const [value, setValue, remove] = useLocalStorage<Theme>(
-    "theme",
-    defaultTheme
-  );
+  const [value, setValue] = useLocalStorage<Theme>("theme", defaultTheme);
   const [theme, setTheme] = useState<Theme>(value);
 
   const colorMode =

@@ -6,10 +6,6 @@ interface Props {
   };
 }
 const { title, frontmatter } = Astro.props;
-import Footer from "~/components/Footer.astro";
-import Header from "~/components/Header";
-import RandomSVG from "~/components/RandomSVGBackground.astro";
-import { cn } from "~/utils";
 ---
 
 <html lang="en">
@@ -20,37 +16,31 @@ import { cn } from "~/utils";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title || (frontmatter && frontmatter.title)}</title>
-    <style>
-      @font-face {
-        font-family: "smiley-sans";
-        src: url("/fonts/SmileySans-Oblique.otf.woff2") format("woff");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-      *::selection {
-        background-color: var(--md-sys-color-primary-container);
-      }
-
-      :root {
-        scrollbar-gutter: stable;
-      }
-    </style>
+    <script is:inline>
+      (function () {
+        const storedTheme = JSON.parse(
+          window.localStorage.getItem("theme") ?? '"auto"'
+        );
+        let presetTheme;
+        if (storedTheme === "auto") {
+          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+        } else {
+          presetTheme = storedTheme;
+        }
+        if (presetTheme === "dark") {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        } else {
+          document.documentElement.classList.remove("dark");
+          document.documentElement.style.colorScheme = "light";
+        }
+      })();
+    </script>
   </head>
-  <body class="relative dark">
-    <section class="flex flex-col bg-background">
-      <Header client:only />
-      <main
-        class={cn(
-          "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen text-default-600",
-          "max-w-screen-sm md:max-w-screen-md mx-auto",
-          "prose md:prose-lg dark:prose-invert prose-md"
-        )}
-      >
-        <slot />
-      </main>
-      <RandomSVG />
-      <Footer />
-    </section>
+  <body class="relative">
+    <slot />
   </body>
 </html>

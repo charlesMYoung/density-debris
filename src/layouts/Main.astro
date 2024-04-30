@@ -1,0 +1,60 @@
+---
+const { title, frontmatter } = Astro.props;
+import Footer from "~/components/Footer.astro";
+import Header from "~/components/Header";
+import RandomSVG from "~/components/RandomSVGBackground.astro";
+import { cn } from "~/utils";
+---
+
+<style is:global>
+  @font-face {
+    font-family: "smiley-sans";
+    src: url("/fonts/SmileySans-Oblique.otf.woff2") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+<section class="flex flex-col bg-background">
+  <Header client:only />
+  <main
+    class={cn(
+      "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen text-default-600",
+      "max-w-screen-sm md:max-w-screen-md mx-auto",
+      "prose md:prose-lg dark:prose-invert prose-md"
+    )}
+  >
+    <slot />
+  </main>
+  <RandomSVG />
+  <Footer />
+</section>
+
+<script>
+  // prevent flash when using view transitions in astro
+  const initColorMode = () => {
+    const storedTheme = JSON.parse(
+      window.localStorage.getItem("theme") ?? '"auto"'
+    );
+    let presetTheme;
+    if (storedTheme === "auto") {
+      presetTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    } else {
+      presetTheme = storedTheme;
+    }
+    if (presetTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+    }
+  };
+
+  // Runs on initial navigation
+  initColorMode();
+  // Runs on view transitions navigation
+  document.addEventListener("astro:after-swap", initColorMode);
+</script>

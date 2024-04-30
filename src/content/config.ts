@@ -7,8 +7,8 @@ const postsCollection = defineCollection({
     isDraft: z.boolean().optional().default(false),
     title: z.string(),
     pubDate: z.date(),
-    description: z.string(),
     category: z.string(),
+    description: z.string().optional().default(""),
   }),
 });
 // 导出一个单独的 `collections` 对象来注册你的集合

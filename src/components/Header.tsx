@@ -9,11 +9,16 @@ import {
 } from "@nextui-org/react";
 
 import { Icon } from "@iconify/react";
+import useTheme, { type Theme } from "~/hooks/useTheme";
 /**
  * Navbar component
  * @returns
  */
 export default function Header() {
+  const { colorMode, theme, setTheme } = useTheme();
+  const switchTheme = (themeName: Theme) => {
+    setTheme(themeName);
+  };
   return (
     <NextUIProvider>
       <Navbar shouldHideOnScroll>
@@ -31,14 +36,25 @@ export default function Header() {
               <Icon icon="ri:github-line" />
             </Button>
 
-            <Button isIconOnly variant="light">
+            {colorMode === "light" ? (
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={() => switchTheme("dark")}
+              >
+                <Icon icon="ri:sun-fill" />
+              </Button>
+            ) : (
+              <Button
+                isIconOnly
+                variant="light"
+                onClick={() => switchTheme("light")}
+              >
+                <Icon icon="ri:moon-fill" />
+              </Button>
+            )}
+            <Button isIconOnly variant="light" as={Link} href="/rss.xml">
               <Icon icon="ri:rss-line" />
-            </Button>
-            <Button isIconOnly variant="light">
-              <Icon icon="ri:sun-fill" />
-            </Button>
-            <Button isIconOnly variant="light">
-              <Icon icon="ri:moon-fill" />
             </Button>
           </NavbarItem>
           <NavbarItem />
