@@ -59,7 +59,7 @@ const currentPostList = groupCategoryPosts.find(
       Object.keys(subMenu)?.map((key: string) => {
         return (
           <a
-            class={cn("text-2xl no-underline text-on-background", {
+            class={cn("text-2xl no-underline text-default-500", {
               "text-primary": catagory === key,
             })}
             href={`/${key}`}
@@ -76,19 +76,19 @@ const currentPostList = groupCategoryPosts.find(
       currentPostList?.value.length > 0 ? (
         currentPostList?.value.map(({ key, value }) => (
           <div class="relative flex">
-            <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
+            <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold text-default-100">
               {dayjs(key).format("YYYY")}
             </div>
             <div class="flex w-full flex-col space-y-8  z-10">
               {value.map((post) => {
                 return (
                   <a
-                    class="text-2xl text-on-background cursor-pointer hover:text-secondary no-underline"
+                    class="text-2xl text-default-500 cursor-pointer hover:text-primary-500 no-underline"
                     href={`/post/${post.slug}/`}
                     title={post.data.title}
                   >
                     {post.data.title}
-                    <span class="ml-2 text-xl text-secondary">
+                    <span class="ml-2 text-xl text-secondary-300">
                       {dayjs(post.data.pubDate).format("MM-DD")}
                     </span>
                   </a>

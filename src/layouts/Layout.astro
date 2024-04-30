@@ -1,8 +1,8 @@
 ---
 interface Props {
   title?: string;
-  frontmatter: {
-    title: string;
+  frontmatter?: {
+    title?: string;
   };
 }
 const { title, frontmatter } = Astro.props;
@@ -19,7 +19,7 @@ import { cn } from "~/utils";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title || frontmatter.title}</title>
+    <title>{title || (frontmatter && frontmatter.title)}</title>
     <style>
       @font-face {
         font-family: "smiley-sans";
@@ -38,13 +38,13 @@ import { cn } from "~/utils";
     </style>
   </head>
   <body class="relative dark">
-    <section class="flex flex-col bg-background text-default">
+    <section class="flex flex-col bg-background">
       <Header client:only />
       <main
         class={cn(
-          "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen",
+          "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen text-default-600",
           "max-w-screen-sm md:max-w-screen-md mx-auto",
-          "prose md:prose-lg text-on-background dark:prose-invert prose-md"
+          "prose md:prose-lg dark:prose-invert prose-md"
         )}
       >
         <slot />

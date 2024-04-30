@@ -20,14 +20,12 @@ export default function Header() {
         <NavbarBrand>
           <p className="font-bold text-inherit">LOGO</p>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4" justify="end">
+        <NavbarContent justify="end">
           <NavbarItem>
             <Link color="foreground" href="/reflection">
               Blog
             </Link>
           </NavbarItem>
-        </NavbarContent>
-        <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <Button isIconOnly variant="light">
               <Icon icon="ri:github-line" />
