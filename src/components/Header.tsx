@@ -25,7 +25,7 @@ export default function Header() {
       <Navbar shouldHideOnScroll>
         <NavbarBrand>
           <Link color="foreground" href="/">
-            LOGO
+            Eth.Young
           </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
