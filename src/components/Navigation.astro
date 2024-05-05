@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { cn } from "~/utils/cn";
+import { socialLinks } from "~/config";
 ---
 
 <div
@@ -9,14 +10,23 @@ import { cn } from "~/utils/cn";
     "text-on-background flex space-x-4 items-center w-full py-2"
   )}
 >
-  <a class="fixed" href="/">LOGO</a>
+  <a class="fixed" href="/">Eth.Young</a>
   <div class="flex w-full justify-end top-0 py-4 z-10 title-lg space-x-6">
     <a href="/reflection/" class="hover:text-secondary">Blog</a>
   </div>
   <div class="flex title-lg space-x-2">
-    <Icon name="ri:github-line" class="hover:text-secondary cursor-pointer" />
-    <Icon name="ri:rss-line" class="hover:text-secondary cursor-pointer" />
-    <Icon name="ri:sun-fill" class="hover:text-secondary cursor-pointer" />
-    <Icon name="ri:moon-fill" class="hover:text-secondary cursor-pointer" />
+    {
+      socialLinks &&
+        socialLinks.map((link) => (
+          <a href={link.url} class="hover:text-secondary" target="_blank">
+            <Icon name={link.icon} />
+          </a>
+        ))
+    }
+    <Icon name="ri:sun-fill" class="hover:text-secondary cursor-pointer sun" />
+    <Icon
+      name="ri:moon-fill"
+      class="hover:text-secondary cursor-pointer mooon"
+    />
   </div>
 </div>

@@ -1,8 +1,8 @@
 ---
 interface Props {
   title?: string;
-  frontmatter: {
-    title: string;
+  frontmatter?: {
+    title?: string;
   };
 }
 const { title, frontmatter } = Astro.props;
@@ -19,22 +19,68 @@ import { cn } from "~/utils";
     themeFromSourceColor,
     applyTheme,
   } from "@material/material-color-utilities";
-  // Get the theme from a hex color
-  const theme = themeFromSourceColor(argbFromHex("#902FA7"), [
-    {
-      name: "custom-1",
-      value: argbFromHex("#ffdd77"),
-      blend: true,
-    },
-  ]);
 
-  // Check if the user has dark mode turned on
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(theme, { target: document.body, dark: true });
+  const getIsDark = () => {
+    const storedTheme = window.localStorage.getItem("theme") ?? '"auto"';
+    let presetTheme = "light";
+    if (storedTheme === "auto") {
+      presetTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    } else {
+      presetTheme = storedTheme;
+    }
+    return presetTheme === "dark";
+  };
+
+  const initTheme = () => {
+    const theme = themeFromSourceColor(argbFromHex("#902FA7"), []);
+    const isDark = getIsDark();
+    // Check if the user has dark mode turned on
+    applyTheme(theme, { target: document.body, dark: isDark });
+    switchIconStyle(isDark);
+  };
+
+  const registerClick = () => {
+    const sun = document.querySelector(".sun");
+    const moon = document.querySelector(".mooon");
+    if (sun) {
+      sun.addEventListener("click", () => {
+        localStorage.setItem("theme", "light");
+        initTheme();
+      });
+    }
+
+    if (moon) {
+      moon.addEventListener("click", () => {
+        localStorage.setItem("theme", "dark");
+        initTheme();
+      });
+    }
+  };
+
+  const switchIconStyle = (isDark: boolean) => {
+    const sun = document.querySelector(".sun") as HTMLElement;
+    const moon = document.querySelector(".mooon") as HTMLElement;
+    if (sun || moon) {
+      if (!isDark) {
+        sun.style.display = "none";
+        moon.style.display = "block";
+      } else {
+        sun.style.display = "block";
+        moon.style.display = "none";
+      }
+    }
+  };
+
+  initTheme();
+  registerClick();
 
   // Apply the theme to the body by updating custom properties for material tokens
   document.addEventListener("astro:after-swap", () => {
-    applyTheme(theme, { target: document.body, dark: systemDark });
+    initTheme();
+
+    registerClick();
   });
 </script>
 
@@ -64,12 +110,12 @@ import { cn } from "~/utils";
       }
     </style>
   </head>
-  <body class="relative">
-    <section class="flex flex-col bg-background">
+  <body>
+    <section class="flex flex-col bg-background h-screen">
       <Navigation />
       <main
         class={cn(
-          "flex-1 w-full px-4 py-16 sm:px-0 min-h-screen",
+          "w-full px-4 py-16 sm:px-0 flex-1 text-default-600",
           "max-w-screen-sm md:max-w-screen-md mx-auto",
           "prose md:prose-lg text-on-background dark:prose-invert prose-md"
         )}

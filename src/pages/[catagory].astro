@@ -1,11 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../layouts/Layout.astro";
+import Layout from "~/layouts/Layout.astro";
 import { groupByArray } from "~/utils";
 import dayjs from "dayjs";
 import { cn } from "~/utils";
 
-const pageTitle = "Blog";
 const allPosts = await getCollection("posts");
 
 const mapData = allPosts.map((item) => {

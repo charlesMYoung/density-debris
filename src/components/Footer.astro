@@ -1,7 +1,7 @@
 ---
 import dayjs from "dayjs";
 const copyright = "CC BY-NC-SA 4.0";
-const username = "withastro";
+import { AppConfig } from "~/config";
 ---
 
 <footer class="title-md text-on-surface mt-10 mb-6 flex justify-center w-full">
@@ -10,6 +10,6 @@ const username = "withastro";
       class="text-primary hover:text-on-primary"
       href="https://creativecommons.org/licenses/by-nc-sa/4.0/">{copyright}</a
     >
-    2021-{dayjs().year()} © {username}
+    2021-{dayjs().year()} © {AppConfig.title}
   </p>
 </footer>

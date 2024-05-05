@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "~/layouts/Layout.astro";
+import dayjs from "dayjs";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -12,9 +13,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// 计算阅读时间
+const words = entry.body.split(" ").length;
+const minutes = Math.ceil(words / 200);
 ---
 
 <Layout title={entry.data.title}>
   <h1>{entry.data.title}</h1>
+  <p class="text-default-200">
+    {dayjs(entry.data.pubDate).format("MM-DD")}. {minutes} 分钟
+  </p>
   <Content />
 </Layout>
