@@ -21,7 +21,7 @@ const minutes = Math.ceil(words / 200);
 
 <Layout title={entry.data.title}>
   <h1>{entry.data.title}</h1>
-  <p class="text-default-200">
+  <p class="text-secondary">
     {dayjs(entry.data.pubDate).format("MM-DD")}. {minutes} 分钟
   </p>
   <Content />

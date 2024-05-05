@@ -14,72 +14,17 @@ import { cn } from "~/utils";
 ---
 
 <script>
-  import {
-    argbFromHex,
-    themeFromSourceColor,
-    applyTheme,
-  } from "@material/material-color-utilities";
+  import { initTheme, registerClick } from "~/common/md-color-theme";
 
-  const getIsDark = () => {
-    const storedTheme = window.localStorage.getItem("theme") ?? '"auto"';
-    let presetTheme = "light";
-    if (storedTheme === "auto") {
-      presetTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    } else {
-      presetTheme = storedTheme;
-    }
-    return presetTheme === "dark";
-  };
+  setInterval(() => {
+    initTheme();
+  }, 1000);
 
-  const initTheme = () => {
-    const theme = themeFromSourceColor(argbFromHex("#902FA7"), []);
-    const isDark = getIsDark();
-    // Check if the user has dark mode turned on
-    applyTheme(theme, { target: document.body, dark: isDark });
-    switchIconStyle(isDark);
-  };
-
-  const registerClick = () => {
-    const sun = document.querySelector(".sun");
-    const moon = document.querySelector(".mooon");
-    if (sun) {
-      sun.addEventListener("click", () => {
-        localStorage.setItem("theme", "light");
-        initTheme();
-      });
-    }
-
-    if (moon) {
-      moon.addEventListener("click", () => {
-        localStorage.setItem("theme", "dark");
-        initTheme();
-      });
-    }
-  };
-
-  const switchIconStyle = (isDark: boolean) => {
-    const sun = document.querySelector(".sun") as HTMLElement;
-    const moon = document.querySelector(".mooon") as HTMLElement;
-    if (sun || moon) {
-      if (!isDark) {
-        sun.style.display = "none";
-        moon.style.display = "block";
-      } else {
-        sun.style.display = "block";
-        moon.style.display = "none";
-      }
-    }
-  };
-
-  initTheme();
   registerClick();
 
   // Apply the theme to the body by updating custom properties for material tokens
   document.addEventListener("astro:after-swap", () => {
     initTheme();
-
     registerClick();
   });
 </script>
@@ -115,7 +60,7 @@ import { cn } from "~/utils";
       <Navigation />
       <main
         class={cn(
-          "w-full px-4 py-16 sm:px-0 flex-1 text-default-600",
+          "w-full px-4 py-16 sm:px-0 flex-1",
           "max-w-screen-sm md:max-w-screen-md mx-auto",
           "prose md:prose-lg text-on-background dark:prose-invert prose-md"
         )}
