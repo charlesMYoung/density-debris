@@ -20,7 +20,7 @@ import { cn } from "~/utils";
     applyTheme,
   } from "@material/material-color-utilities";
   // Get the theme from a hex color
-  const theme = themeFromSourceColor(argbFromHex("#002FA7"), [
+  const theme = themeFromSourceColor(argbFromHex("#902FA7"), [
     {
       name: "custom-1",
       value: argbFromHex("#ffdd77"),
@@ -30,9 +30,12 @@ import { cn } from "~/utils";
 
   // Check if the user has dark mode turned on
   const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(theme, { target: document.body, dark: true });
 
   // Apply the theme to the body by updating custom properties for material tokens
-  applyTheme(theme, { target: document.body, dark: systemDark });
+  document.addEventListener("astro:after-swap", () => {
+    applyTheme(theme, { target: document.body, dark: systemDark });
+  });
 </script>
 
 <html lang="en">
