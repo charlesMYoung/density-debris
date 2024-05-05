@@ -9,6 +9,7 @@ const { title, frontmatter } = Astro.props;
 import Footer from "~/components/Footer.astro";
 import Navigation from "~/components/Navigation.astro";
 import RandomSVG from "~/components/RandomSVGBackground.astro";
+import { ViewTransitions } from "astro:transitions";
 import { cn } from "~/utils";
 ---
 
@@ -42,6 +43,7 @@ import { cn } from "~/utils";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title || frontmatter.title}</title>
+    <ViewTransitions />
     <style>
       @font-face {
         font-family: "smiley-sans";
