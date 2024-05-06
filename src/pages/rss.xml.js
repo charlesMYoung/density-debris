@@ -14,13 +14,15 @@ export async function GET() {
     site: AppConfig.homeUrl,
     // 输出的 xml 中的`<item>`数组
     // 有关使用内容集合和 glob 导入的示例，请参阅“生成`items`”部分
-    items: blog.map((item) => {
-      return {
-        title: item.data.title,
-        description: item.data.description,
-        link: `${AppConfig.homeUrl}/posts/${item.slug}`,
-        pubDate: item.data.pubDate,
-      };
-    }),
+    items: blog
+      .filter((post) => !post.data.isDraft)
+      .map((item) => {
+        return {
+          title: item.data.title,
+          description: item.data.description,
+          link: `${AppConfig.homeUrl}/posts/${item.slug}`,
+          pubDate: item.data.pubDate,
+        };
+      }),
   });
 }
