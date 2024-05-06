@@ -1,11 +1,13 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
   frontmatter?: {
     title?: string;
+    description?: string;
   };
 }
-const { title, frontmatter } = Astro.props;
+const { title, frontmatter, description } = Astro.props;
 import Footer from "~/components/Footer.astro";
 import Navigation from "~/components/Navigation.astro";
 import RandomSVG from "~/components/RandomSVGBackground.astro";
@@ -39,7 +41,7 @@ import { cn } from "~/utils";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title || frontmatter.title}</title>
+    <title>{title || (frontmatter && frontmatter.title)}</title>
     <ViewTransitions />
     <style>
       @font-face {

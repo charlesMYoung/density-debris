@@ -17,10 +17,6 @@ const { Content } = await entry.render();
 // 计算阅读时间
 const words = entry.body.split(" ").length;
 const minutes = Math.ceil(words / 200);
-
-// 计算阅读时间
-const words = entry.body.split(" ").length;
-const minutes = Math.ceil(words / 200);
 ---
 
 <Layout title={entry.data.title}>
