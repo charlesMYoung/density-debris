@@ -6,13 +6,16 @@ import { socialLinks } from "~/config";
 
 <div
   class={cn(
-    "max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto",
-    "text-on-background flex space-x-4 items-center w-full py-2"
+    "max-w-screen-ms mx-auto",
+    "text-on-background flex space-x-4 items-center w-full py-2 px-4",
+    "md:max-w-screen-md",
+    "lg:max-w-screen-lg",
+    "xl:max-w-screen-xl"
   )}
 >
-  <a class="fixed" href="/">Eth.Young</a>
+  <a class="fixed w-36 h-9 z-10 flex items-center" href="/">Eth.Young</a>
   <div class="flex w-full justify-end top-0 py-4 z-10 title-lg space-x-6">
-    <a href="/reflection/" class="hover:text-secondary">Blog</a>
+    <a href="/reflection/" class="text-on-surface hover:text-secondary">Blog</a>
   </div>
   <div class="flex title-lg space-x-2">
     {

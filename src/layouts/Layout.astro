@@ -15,7 +15,7 @@ import { cn } from "~/utils";
 
 <script>
   import { initTheme, registerClick } from "~/common/md-color-theme";
-
+  initTheme();
   setInterval(() => {
     initTheme();
   }, 1000);
@@ -49,14 +49,10 @@ import { cn } from "~/utils";
       *::selection {
         background-color: var(--md-sys-color-primary-container);
       }
-
-      :root {
-        scrollbar-gutter: stable;
-      }
     </style>
   </head>
   <body>
-    <section class="flex flex-col bg-background h-screen">
+    <section class="flex flex-col bg-background min-h-screen">
       <Navigation />
       <main
         class={cn(
