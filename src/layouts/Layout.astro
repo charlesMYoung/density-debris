@@ -7,9 +7,29 @@ interface Props {
     description?: string;
   };
 }
-import { ViewTransitions } from "astro:transitions";
 const { title, frontmatter, description } = Astro.props;
+import Footer from "~/components/Footer.astro";
+import Navigation from "~/components/Navigation.astro";
+import RandomSVG from "~/components/RandomSVGBackground.astro";
+import { ViewTransitions } from "astro:transitions";
+import { cn } from "~/utils";
 ---
+
+<script>
+  import { initTheme, registerClick } from "~/common/md-color-theme";
+  initTheme();
+  setInterval(() => {
+    initTheme();
+  }, 1000);
+
+  registerClick();
+
+  // Apply the theme to the body by updating custom properties for material tokens
+  document.addEventListener("astro:after-swap", () => {
+    initTheme();
+    registerClick();
+  });
+</script>
 
 <html lang="en">
   <head>
@@ -23,31 +43,33 @@ const { title, frontmatter, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title || (frontmatter && frontmatter.title)}</title>
     <ViewTransitions />
-    <script is:inline>
-      (function () {
-        const storedTheme = JSON.parse(
-          window.localStorage.getItem("theme") ?? '"auto"'
-        );
-        let presetTheme;
-        if (storedTheme === "auto") {
-          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
-            ? "dark"
-            : "light";
-        } else {
-          presetTheme = storedTheme;
-        }
-        if (presetTheme === "dark") {
-          document.documentElement.classList.add("dark");
-          document.documentElement.style.colorScheme = "dark";
-        } else {
-          document.documentElement.classList.remove("dark");
-          document.documentElement.style.colorScheme = "light";
-        }
-      })();
-    </script>
+    <style>
+      @font-face {
+        font-family: "smiley-sans";
+        src: url("/fonts/SmileySans-Oblique.otf.woff2") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      *::selection {
+        background-color: var(--md-sys-color-primary-container);
+      }
+    </style>
   </head>
   <body>
-    <slot />
+    <section class="flex flex-col bg-background min-h-screen">
+      <Navigation />
+      <main
+        class={cn(
+          "w-full px-4 py-16 sm:px-0 flex-1",
+          "max-w-screen-sm md:max-w-screen-md mx-auto",
+          "prose md:prose-lg text-on-background dark:prose-invert prose-md"
+        )}
+      >
+        <slot />
+      </main>
+      <RandomSVG />
+      <Footer />
+    </section>
   </body>
 </html>

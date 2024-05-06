@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import type { Blog, SocialLink } from "./types/config";
 
 export const AppConfig: Blog = {
@@ -9,8 +8,13 @@ export const AppConfig: Blog = {
 
 export const socialLinks: SocialLink[] = [
   {
-    icon: <Icon icon="ri:github-line" />,
+    icon: "ri:github-line",
     name: "GitHub",
     url: "https://github.com/charlesMYoung",
+  },
+  {
+    icon: "ri:rss-line",
+    name: "RSS",
+    url: "/rss.xml",
   },
 ];

@@ -9,7 +9,7 @@ export type Blog = {
 };
 
 export type SocialLink = {
-  icon: React.ReactNode;
+  icon: string;
   name: string;
   url: string;
 };

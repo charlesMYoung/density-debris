@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
-import Main from "~/layouts/Main.astro";
 import { groupByArray } from "~/utils";
 import dayjs from "dayjs";
 import { cn } from "~/utils";
@@ -52,56 +51,54 @@ const currentPostList = groupCategoryPosts.find(
 ---
 
 <Layout title={subMenu[catagory]}>
-  <Main>
-    <div
-      class="flex w-full flex-col space-y-4 pb-10 md:flex-row md:space-x-6 md:space-y-0"
-    >
-      {
-        Object.keys(subMenu)?.map((key: string) => {
-          return (
-            <a
-              class={cn("text-2xl no-underline text-default-500", {
-                "text-primary": catagory === key,
-              })}
-              href={`/${key}`}
-            >
-              {subMenu[key] as unknown as string}
-            </a>
-          );
-        })
-      }
-    </div>
-    <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
-      {
-        Array.isArray(currentPostList?.value) &&
-        currentPostList?.value.length > 0 ? (
-          currentPostList?.value.map(({ key, value }) => (
-            <div class="relative flex">
-              <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold text-default-100">
-                {dayjs(key).format("YYYY")}
-              </div>
-              <div class="flex w-full flex-col space-y-8  z-10">
-                {value.map((post) => {
-                  return (
-                    <a
-                      class="text-2xl text-default-500 cursor-pointer hover:text-primary-500 no-underline"
-                      href={`/post/${post.slug}/`}
-                      title={post.data.title}
-                    >
-                      {post.data.title}
-                      <span class="ml-2 text-xl text-secondary-300">
-                        {dayjs(post.data.pubDate).format("MM-DD")}
-                      </span>
-                    </a>
-                  );
-                })}
-              </div>
+  <div
+    class="flex w-full flex-col space-y-4 pb-10 md:flex-row md:space-x-6 md:space-y-0"
+  >
+    {
+      Object.keys(subMenu)?.map((key: string) => {
+        return (
+          <a
+            class={cn("text-2xl no-underline text-default-500", {
+              "text-primary": catagory === key,
+            })}
+            href={`/${key}`}
+          >
+            {subMenu[key] as unknown as string}
+          </a>
+        );
+      })
+    }
+  </div>
+  <div class="grid grid-cols-1 gap-4 space-y-28 py-20">
+    {
+      Array.isArray(currentPostList?.value) &&
+      currentPostList?.value.length > 0 ? (
+        currentPostList?.value.map(({ key, value }) => (
+          <div class="relative flex">
+            <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
+              {dayjs(key).format("YYYY")}
             </div>
-          ))
-        ) : (
-          <div>还没有任何文章哦</div>
-        )
-      }
-    </div>
-  </Main>
+            <div class="flex w-full flex-col space-y-8  z-10">
+              {value.map((post) => {
+                return (
+                  <a
+                    class="text-2xl text-default-500 cursor-pointer hover:text-primary-500 no-underline"
+                    href={`/post/${post.slug}/`}
+                    title={post.data.title}
+                  >
+                    {post.data.title}
+                    <span class="ml-2 text-xl text-secondary-300">
+                      {dayjs(post.data.pubDate).format("MM-DD")}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      ) : (
+        <div>还没有任何文章哦</div>
+      )
+    }
+  </div>
 </Layout>

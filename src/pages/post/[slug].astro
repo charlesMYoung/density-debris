@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
-import Main from "~/layouts/Main.astro";
 import dayjs from "dayjs";
 
 export async function getStaticPaths() {
@@ -21,11 +20,9 @@ const minutes = Math.ceil(words / 200);
 ---
 
 <Layout title={entry.data.title}>
-  <Main>
-    <h1>{entry.data.title}</h1>
-    <p class="text-default-200">
-      {dayjs(entry.data.pubDate).format("MM-DD")}. {minutes} 分钟
-    </p>
-    <Content />
-  </Main>
+  <h1>{entry.data.title}</h1>
+  <p class="text-secondary">
+    {dayjs(entry.data.pubDate).format("MM-DD")}. {minutes} 分钟
+  </p>
+  <Content />
 </Layout>
