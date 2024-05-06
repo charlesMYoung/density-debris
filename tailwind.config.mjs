@@ -1,4 +1,3 @@
-import plugin from "tailwindcss/plugin";
 import twTypography from "@tailwindcss/typography";
 
 const themeColors = () => {
