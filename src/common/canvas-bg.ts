@@ -13,7 +13,7 @@ const getCanvasCTX = () => {
   return ctx;
 };
 
-function init() {
+export function init() {
   const ctx = getCanvasCTX();
   if (ctx) {
     ctx.strokeStyle = "#88888825";

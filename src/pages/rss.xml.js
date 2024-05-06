@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { AppConfig } from "~/config";
 
-export async function GET(context) {
+export async function GET() {
   const blog = await getCollection("posts");
   return rss({
     // 输出的 xml 中的`<title>`字段

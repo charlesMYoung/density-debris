@@ -1,5 +1,3 @@
-import type React from "react";
-
 export type Blog = {
   // 博客标题
   title: string;

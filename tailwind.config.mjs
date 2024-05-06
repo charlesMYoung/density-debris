@@ -40,7 +40,7 @@ const fontUnit = (/** @type {number} */ size) => {
   return `${size / 16}rem`;
 };
 
-const typography = plugin(({ addComponents, theme }) => {
+const typography = plugin(({ addComponents }) => {
   addComponents({
     ".dp-lg": {
       lineHeight: fontUnit(64),
