@@ -7,13 +7,15 @@ import { cn } from "~/utils";
 
 const allPosts = await getCollection("posts");
 
-const mapData = allPosts.map((item) => {
-  return {
-    ...item,
-    ...item.data,
-    pubDate: dayjs(item.data.pubDate).year(),
-  };
-});
+const mapData = allPosts
+  .filter((post) => !post.data.isDraft)
+  .map((item) => {
+    return {
+      ...item,
+      ...item.data,
+      pubDate: dayjs(item.data.pubDate).year(),
+    };
+  });
 
 const groupedData = groupByArray(mapData, "category");
 
