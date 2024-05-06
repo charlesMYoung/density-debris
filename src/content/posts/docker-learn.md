@@ -3,7 +3,7 @@ title: "Docker 入门"
 pubDate: 2024-05-06
 description: "Docker 入门，作为一个前端，一些docker 知识点"
 category: "tech"
-isDraft: true
+isDraft: false
 ---
 
 ## 是什么？
@@ -174,11 +174,11 @@ docker exec -it <container_name> /bin/bash
 
 Docker Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，可以使用 YAML 文件来配置应用的服务，然后使用一个命令就可以创建并启动所有服务。
 
-- 多容器应用程序：当您的应用程序由多个容器组成时，可以使用 Docker Compose 来定义、管理和运行这些容器。
-- 开发环境：在开发过程中，使用 Docker Compose 可以轻松地设置开发环境，包括数据库、缓存和其他服务，以便团队成员可以快速启动整个开发环境。
-- 测试环境：您可以使用 Docker Compose 在测试环境中快速部署和管理多个容器，以便进行集成测试和端到端测试。
-- 简化部署：通过在生产环境中使用 Docker Compose，您可以轻松地部署整个应用程序栈，而不必手动设置每个容器。
-- 快速原型：使用 Docker Compose 可以快速创建原型和演示环境，而无需手动安装和配置多个服务。
+- **多容器应用程序**：当您的应用程序由多个容器组成时，可以使用 Docker Compose 来定义、管理和运行这些容器。
+- **开发环境**：在开发过程中，使用 Docker Compose 可以轻松地设置开发环境，包括数据库、缓存和其他服务，以便团队成员可以快速启动整个开发环境。
+- **测试环境**：您可以使用 Docker Compose 在测试环境中快速部署和管理多个容器，以便进行集成测试和端到端测试。
+- **简化部署**：通过在生产环境中使用 Docker Compose，您可以轻松地部署整个应用程序栈，而不必手动设置每个容器。
+- **快速原型**：使用 Docker Compose 可以快速创建原型和演示环境，而无需手动安装和配置多个服务。
 
 > 通常用于本地开发环境，生产环境建议使用 Docker Swarm 或 Kubernetes。
 
