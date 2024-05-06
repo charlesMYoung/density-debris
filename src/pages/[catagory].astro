@@ -60,7 +60,7 @@ const currentPostList = groupCategoryPosts.find(
       Object.keys(subMenu)?.map((key: string) => {
         return (
           <a
-            class={cn("text-2xl no-underline text-default-500", {
+            class={cn("text-2xl no-underline ", {
               "text-primary": catagory === key,
             })}
             href={`/${key}`}

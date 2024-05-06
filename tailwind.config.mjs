@@ -144,10 +144,10 @@ export default {
           md: {
             //tertiary
             css: {
-              "--tw-prose-body": "var(--md-sys-color-primary)",
+              "--tw-prose-body": "var(--md-sys-color-surface)",
               "--tw-prose-headings": "var(--md-sys-color-primary)",
               "--tw-prose-lead": "var(--md-sys-color-primary)",
-              "--tw-prose-links": "var(--md-sys-color-primary)",
+              "--tw-prose-links": "var(--md-sys-color-on-surface)",
               "--tw-prose-bold": "var(--md-sys-color-primary)",
               "--tw-prose-counters": "var(--md-sys-color-primary)",
               "--tw-prose-bullets": "var(--md-sys-color-primary)",
