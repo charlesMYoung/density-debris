@@ -10,6 +10,7 @@ const postsCollection = defineCollection({
     // 为 `category` 字段添加一个枚举
     category: z.enum(["tech", "reflection", "tech"]),
     description: z.string().optional().default(""),
+    isComment: z.boolean().optional().default(false),
   }),
 });
 // 导出一个单独的 `collections` 对象来注册你的集合

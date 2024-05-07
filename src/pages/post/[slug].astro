@@ -28,5 +28,10 @@ const minutes = Math.ceil(words / 200);
     {dayjs(entry.data.pubDate).format("MM-DD")}. {minutes} 分钟
   </p>
   <Content />
-  <Comment client:only />
+  {
+    entry.data.isComment && (
+    <Comment client:only />
+    )
+  }
+
 </Layout>
