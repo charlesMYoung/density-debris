@@ -2,7 +2,7 @@ import type { Blog, SocialLink } from "./types/config";
 
 export const AppConfig: Blog = {
   title: "Ethan Young",
-  homeUrl: "https://charlesMYoung.github.io/density-debris",
+  homeUrl: "https://charlesmyoung.github.io/density-debris",
   description: "I am a software engineer and a writer.",
 };
 
