@@ -20,7 +20,7 @@ export async function GET() {
         return {
           title: item.data.title,
           description: item.data.description,
-          link: `${AppConfig.homeUrl}/posts/${item.slug}`,
+          link: `${AppConfig.homeUrl}/post/${item.slug}`,
           pubDate: item.data.pubDate,
         };
       }),
