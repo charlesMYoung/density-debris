@@ -63,7 +63,7 @@ const currentPostList = groupCategoryPosts.find(
             class={cn("text-2xl no-underline ", {
               "text-primary": catagory === key,
             })}
-            href={`/${key}`}
+            href={`${import.meta.env.BASE_URL}/${key}`}
           >
             {subMenu[key] as unknown as string}
           </a>
@@ -85,7 +85,7 @@ const currentPostList = groupCategoryPosts.find(
                 return (
                   <a
                     class="text-2xl text-default-500 cursor-pointer hover:text-primary-500 no-underline"
-                    href={`/post/${post.slug}/`}
+                    href={`${import.meta.env.BASE_URL}/post/${post.slug}/`}
                     title={post.data.title}
                   >
                     {post.data.title}
