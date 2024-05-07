@@ -15,5 +15,8 @@ export default defineConfig({
     }
   }), mdx()],
   output: "server",
-  adapter: vercel()
+  adapter: vercel(),
+  //for GitHub Pages
+  site: 'https://charlesMYoung.github.io',
+  base: 'density-debris',
 });
