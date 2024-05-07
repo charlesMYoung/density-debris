@@ -19,5 +19,5 @@ export default defineConfig({
   // adapter: vercel(),
   //for GitHub Pages
   site: 'https://charlesMYoung.github.io',
-  base: 'density-debris/',
+  base: 'density-debris',
 });
