@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "build:pages": "astro --config build/astro.config-pages.mjs build",
+    "build:vercel": "astro --config build/astro.config-github.mjs  build",
     "preview": "astro preview",
     "astro": "astro"
   },
