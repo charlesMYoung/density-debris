@@ -9,7 +9,7 @@ export const AppConfig: Blog = {
 export const socialLinks: SocialLink[] = [
   {
     icon: "ri:github-line",
-    name: "GitHub",
+    name: "github",
     url: "https://github.com/charlesMYoung",
   },
   {
