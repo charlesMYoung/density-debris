@@ -14,7 +14,6 @@ export default defineConfig({
       ri: ["*"]
     }
   }), mdx()],
-  site:'https://density-debris-chi.vercel.app/',
   output: "static",
   adapter: vercel({
     webAnalytics: {
