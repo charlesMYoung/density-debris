@@ -11,7 +11,7 @@ export async function GET() {
     description: AppConfig.description,
     // 从端点上下文获取项目“site”
     // https://docs.astro.build/zh-cn/reference/api-reference/#contextsite
-    site: AppConfig.homeUrl,
+    site: import.meta.env.BASE_URL,
     // 输出的 xml 中的`<item>`数组
     // 有关使用内容集合和 glob 导入的示例，请参阅“生成`items`”部分
     items: blog
@@ -20,7 +20,7 @@ export async function GET() {
         return {
           title: item.data.title,
           description: item.data.description,
-          link: `${AppConfig.homeUrl}/post/${item.slug}`,
+          link: `${import.meta.env.BASE_URL}/post/${item.slug}`,
           pubDate: item.data.pubDate,
         };
       }),
