@@ -139,7 +139,7 @@ export default {
       fontFamily: {
         sans: ["smiley-sans"],
       },
-      typography: ({ theme }) => {
+      typography: () => {
         return {
           md: {
             //tertiary

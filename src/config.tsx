@@ -2,6 +2,7 @@ import type { Blog, SocialLink } from "./types/config";
 
 export const AppConfig: Blog = {
   title: "Ethan Young",
+  siteUrl: "https://density-debris-chi.vercel.app/",
   description: "I am a software engineer and a writer.",
 };
 

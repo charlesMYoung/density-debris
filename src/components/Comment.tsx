@@ -1,5 +1,4 @@
 import Giscus from "@giscus/react";
-import { useEffect, useState } from "react";
 
 export const Comment = () => {
   return (

@@ -14,13 +14,11 @@ export default defineConfig({
       ri: ["*"]
     }
   }), mdx()],
+  site:'https://density-debris-chi.vercel.app/',
   output: "static",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
-    },
-    imagesConfig: {
-      sizes: [320, 640, 1280],
     },
   })
 });
