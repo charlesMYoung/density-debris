@@ -15,6 +15,6 @@ export const socialLinks: SocialLink[] = [
   {
     icon: "ri:rss-line",
     name: "RSS",
-    url: `${import.meta.env.BASE_URL}/rss.xml`,
+    url: `/rss.xml`,
   },
 ];
