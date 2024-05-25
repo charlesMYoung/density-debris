@@ -8,7 +8,7 @@ const postsCollection = defineCollection({
     title: z.string(),
     pubDate: z.date(),
     // 为 `category` 字段添加一个枚举
-    category: z.enum(["tech", "reflection", "tech"]),
+    category: z.enum(["tech", "reflection", "note"]),
     description: z.string().optional().default(""),
     isComment: z.boolean().optional().default(false),
   }),
