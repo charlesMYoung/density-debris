@@ -80,16 +80,16 @@ const currentPostList = groupCategoryPosts.find(
             <div class="text-stroke-2 absolute -left-6 -top-16 select-none text-9xl font-bold opacity-10">
               {dayjs(key).format("YYYY")}
             </div>
-            <div class="flex w-full flex-col space-y-8  z-10">
+            <div class="flex w-full flex-col space-y-8 z-10">
               {value.map((post) => {
                 return (
                   <a
-                    class="text-2xl text-default-500 cursor-pointer hover:text-primary-500 no-underline"
+                    class="text-2xl cursor-pointer hover:text-primary no-underline"
                     href={`/post/${post.slug}/`}
                     title={post.data.title}
                   >
                     {post.data.title}
-                    <span class="ml-2 text-xl text-secondary-300">
+                    <span class="ml-2 text-xl text-secondary">
                       {dayjs(post.data.pubDate).format("MM-DD")}
                     </span>
                   </a>

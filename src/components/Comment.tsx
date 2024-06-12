@@ -1,6 +1,6 @@
 import Giscus from "@giscus/react";
 
-export const Comment = () => {
+export const Comment = ({ theme }: { theme: string }) => {
   return (
     <Giscus
       id="comments"
@@ -13,7 +13,7 @@ export const Comment = () => {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="top"
-      theme="dark"
+      theme={theme}
       lang="en"
       loading="lazy"
     />

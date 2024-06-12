@@ -137,7 +137,7 @@ export default {
         ...themeColors(),
       },
       fontFamily: {
-        sans: ["smiley-sans"],
+        sans: ["Noto Sans SC", "sans-serif"],
       },
       typography: () => {
         return {

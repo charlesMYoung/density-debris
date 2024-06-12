@@ -8,11 +8,11 @@ export const groupBy = <T>(array: T[], key: keyof T) => {
 
 export const groupByArray = <T>(array: T[], key: keyof T) => {
   return Object.entries(groupBy(array, key))
-      .map(([key, value]) => ({
-        key,
-        value,
-      }))
-      .sort((a, b) => {
-        return +b.key - +a.key;
-      });
+    .map(([key, value]) => ({
+      key,
+      value,
+    }))
+    .sort((a, b) => {
+      return +b.key - +a.key;
+    });
 };

@@ -1,20 +1,35 @@
 import type { Point, Branch } from "../types/canvas-bg";
 
+const canvasId = "backGroundCanvas";
+let canvas: HTMLCanvasElement;
+let ctx: CanvasRenderingContext2D | null;
+let pendingTasks: Function[] = [];
+let framesCount = 0;
+
 const setCanvasSize = () => {
-  const el = document.getElementById("backGroundCanvas") as HTMLCanvasElement;
-  el.width = window.innerWidth;
-  el.height = window.innerHeight;
-  return el;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 };
 
 const getCanvasCTX = () => {
-  const el = setCanvasSize();
-  const ctx = el!.getContext("2d");
+  if (!ctx) {
+    setCanvasSize();
+    ctx = canvas.getContext("2d");
+  }
   return ctx;
 };
 
+const initCanvas = () => {
+  canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+  if (!canvas) {
+    throw new Error(`Element with ID ${canvasId} not found`);
+  }
+  setCanvasSize();
+  ctx = canvas.getContext("2d");
+};
+
 export function init() {
-  const ctx = getCanvasCTX();
+  initCanvas();
   if (ctx) {
     ctx.strokeStyle = "#88888825";
   }
@@ -32,8 +47,6 @@ export function init() {
   });
 }
 
-let pendingTasks: Function[] = [];
-
 function step(b: Branch, depth = 0) {
   const end = getEndPoint(b);
   drawBranch(b);
@@ -46,8 +59,8 @@ function step(b: Branch, depth = 0) {
           length: b.length + (Math.random() * 2 - 1),
           theta: b.theta - 0.2 * Math.random(),
         },
-        depth + 1
-      )
+        depth + 1,
+      ),
     );
   }
   if (depth < 4 || Math.random() < 0.5) {
@@ -58,25 +71,24 @@ function step(b: Branch, depth = 0) {
           length: b.length + (Math.random() * 2 - 1),
           theta: b.theta + 0.2 * Math.random(),
         },
-        depth + 1
-      )
+        depth + 1,
+      ),
     );
   }
 }
 
 function frame() {
   const tasks: Function[] = [];
-  pendingTasks = pendingTasks.filter((i) => {
+  pendingTasks = pendingTasks.filter((task) => {
     if (Math.random() > 0.4) {
-      tasks.push(i);
+      tasks.push(task);
       return false;
     }
     return true;
   });
-  tasks.forEach((fn) => fn());
+  tasks.forEach((task) => task());
 }
 
-let framesCount = 0;
 function startFrame() {
   requestAnimationFrame(() => {
     framesCount += 1;
@@ -88,7 +100,6 @@ function startFrame() {
 startFrame();
 
 function lineTo(p1: Point, p2: Point) {
-  const ctx = getCanvasCTX();
   if (!ctx) return;
 
   ctx.beginPath();

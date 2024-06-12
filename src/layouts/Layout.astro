@@ -38,22 +38,25 @@ import { cn } from "~/utils";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
     <title>{title || (frontmatter && frontmatter.title)}</title>
     <meta name="title" content={title || (frontmatter && frontmatter.title)} />
     <meta
       name="description"
       content={description || (frontmatter && frontmatter.description)}
     />
-    <ViewTransitions />
     <style>
-      @font-face {
-        font-family: "smiley-sans";
-        src: url("/fonts/SmileySans-Oblique.otf.woff2") format("woff");
-        font-weight: normal;
+      html {
+        font-optical-sizing: auto;
         font-style: normal;
-        font-display: swap;
       }
     </style>
+    <ViewTransitions />
   </head>
   <body>
     <section class="flex flex-col bg-background min-h-screen">
@@ -62,7 +65,7 @@ import { cn } from "~/utils";
         class={cn(
           "w-full px-4 py-16 sm:px-0 flex-1",
           "max-w-screen-sm md:max-w-screen-md mx-auto",
-          "prose md:prose-lg text-on-background dark:prose-invert prose-md"
+          "prose md:prose-lg text-on-background dark:prose-invert prose-md",
         )}
       >
         <slot />

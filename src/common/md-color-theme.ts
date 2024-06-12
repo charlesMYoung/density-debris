@@ -5,7 +5,7 @@ import {
 } from "@material/material-color-utilities";
 import { getRandomColor } from "~/common/time-color";
 
-const getIsDark = () => {
+export const getIsDark = () => {
   const storedTheme = window.localStorage.getItem("theme") ?? '"auto"';
   let presetTheme = "light";
   if (storedTheme === "auto") {
