@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import Layout from "~/layouts/Layout.astro";
 import dayjs from "dayjs";
 import { Comment } from "~/components/Comment";
-import {getIsDark} from '~/common/md-color-theme'
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -33,5 +32,5 @@ const minutes = Math.ceil(words / 200);
     {dayjs(entry.data.pubDate).format("MM-DD")}. 阅读{minutes} 分钟
   </p>
   <Content />
-  {entry.data.isComment && <Comment client:only theme={getIsDark() ? 'dark' : 'light'} />}
+  {entry.data.isComment && <Comment client:only theme={'light'} />}
 </Layout>
