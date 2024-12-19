@@ -30,6 +30,7 @@ const subMenu: Record<string, string> = {
   reflection: "随笔",
   tech: "技术",
   note: "笔记",
+  log:"日志"
 };
 
 export async function getStaticPaths() {
@@ -37,6 +38,7 @@ export async function getStaticPaths() {
     reflection: "随笔",
     tech: "技术",
     note: "笔记",
+    log:"日志"
   };
   return Object.keys(subMenuMap).map((key) => {
     return {
